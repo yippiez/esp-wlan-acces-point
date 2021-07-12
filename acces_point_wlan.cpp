@@ -2,7 +2,7 @@
 
 
 #include <ESP8266WiFi.h>
-#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
+#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
 
 extern "C" {
   #include<user_interface.h>
@@ -69,6 +69,9 @@ void setup() {
   wifiManager.autoConnect(def_ssid, def_pass);
   cli_input.reserve(200);
   
+  wifiManager.setClass("invert");
+  wifiManager.setScanDispPerc(true);
+
 }
 
 void loop() {
@@ -85,6 +88,9 @@ void loop() {
   
    
   }
+  
+   if (Serial.available()) serialEvent();
+
 }
 
 
